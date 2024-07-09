@@ -1,0 +1,245 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.Web\\DemoAPI.Web.csproj": {}
+  },
+  "projects": {
+    "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj",
+        "projectName": "DemoAPI.ApplicationModel",
+        "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj",
+        "packagesPath": "C:\\Users\\IN0124\\.nuget\\packages\\",
+        "outputPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\IN0124\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj": {
+                "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.6.2, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj",
+        "projectName": "DemoAPI.DataModel",
+        "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj",
+        "packagesPath": "C:\\Users\\IN0124\\.nuget\\packages\\",
+        "outputPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\IN0124\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.Web\\DemoAPI.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.Web\\DemoAPI.Web.csproj",
+        "projectName": "DemoAPI.Web",
+        "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.Web\\DemoAPI.Web.csproj",
+        "packagesPath": "C:\\Users\\IN0124\\.nuget\\packages\\",
+        "outputPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\IN0124\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj": {
+                "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj"
+              },
+              "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj": {
+                "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[33.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.32, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.6.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.6.2, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "itext7.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

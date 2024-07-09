@@ -1,0 +1,134 @@
+--DB Creation
+create database EmployeeAPI
+
+--Create Employee Table
+CREATE TABLE Employees (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100),
+    Email NVARCHAR(100),
+    Phone NVARCHAR(15),
+    Image VARBINARY(MAX)
+);
+
+
+--Create Employee SP
+create PROCEDURE sp_AddEmployee
+    @Name NVARCHAR(100),
+    @Email NVARCHAR(100),
+    @Phone NVARCHAR(15),
+    @Image VARBINARY(MAX) = NULL
+AS
+BEGIN
+	if(@Image is NULL)
+	begin
+	INSERT INTO Employees (Name, Email, Phone)
+    VALUES (@Name, @Email, @Phone);
+	end
+	else
+	begin
+	INSERT INTO Employees (Name, Email, Phone, Image)
+    VALUES (@Name, @Email, @Phone, @Image);
+	end    
+
+	select SCOPE_IDENTITY() as ID
+END
+
+
+
+--Get all Employee SP
+create PROCEDURE sp_GetAllEmployees
+AS
+BEGIN
+    SELECT Id,Name,Email,Phone,Image FROM Employees;
+END
+
+--Get by ID
+create PROCEDURE sp_GetEmployeeById
+    @Id INT
+AS
+BEGIN
+    SELECT Id,Name,Email,Phone,Image FROM Employees WHERE Id = @Id;
+END
+
+
+--Update Employee SP
+create PROCEDURE sp_UpdateEmployee
+    @Id INT,
+    @Name NVARCHAR(100),
+    @Email NVARCHAR(100),
+    @Phone NVARCHAR(15),
+    @Image VARBINARY(MAX)
+AS
+BEGIN
+	if(@Image is NULL)
+	begin
+		  UPDATE Employees
+			SET Name = @Name,
+			Email = @Email,
+			Phone = @Phone			
+			WHERE Id = @Id;
+	end
+	else
+	begin
+		  UPDATE Employees
+			SET Name = @Name,
+			Email = @Email,
+			Phone = @Phone,
+			Image = @Image
+			WHERE Id = @Id;
+	end
+
+	select @Id as ID
+  
+END
+
+
+--Delete Employee SP
+create PROCEDURE sp_DeleteEmployee
+    @Id INT
+AS
+BEGIN
+    DELETE FROM Employees WHERE Id = @Id;
+	select @Id as ID
+END
+
+
+
+-------Authentication
+CREATE TABLE Users (
+    UserId INT PRIMARY KEY IDENTITY(1,1),
+    Email NVARCHAR(100) UNIQUE NOT NULL,
+    Password NVARCHAR(255) NOT NULL,
+    AccessId NVARCHAR(50) NOT NULL
+);
+
+create PROCEDURE sp_ValidateUser
+    @Email NVARCHAR(100),
+    @Password NVARCHAR(255)
+AS
+BEGIN
+    SELECT UserId, Email, AccessId
+    FROM Users
+    WHERE Email = @Email AND Password = @Password;
+END
+
+
+
+create PROCEDURE sp_RegisterUser
+    @Email NVARCHAR(100),
+	  @Password NVARCHAR(255),
+	    @AccessId NVARCHAR(50)  
+AS
+BEGIN	
+	if exists (select * from users where email = @Email)
+	begin
+		select 0 as ID
+	end
+	else
+	begin
+		INSERT INTO users ( Email, Password, AccessId)
+    VALUES ( @Email, @Password, @AccessId);	
+		select SCOPE_IDENTITY() as ID
+	end
+END
+

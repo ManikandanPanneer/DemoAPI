@@ -1,0 +1,12 @@
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\bin\Debug\net6.0\DemoAPI.DataModel.deps.json
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\bin\Debug\net6.0\DemoAPI.DataModel.dll
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\bin\Debug\net6.0\DemoAPI.DataModel.pdb
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\DemoAPI.DataModel.csproj.AssemblyReference.cache
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\DemoAPI.DataModel.GeneratedMSBuildEditorConfig.editorconfig
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\DemoAPI.DataModel.AssemblyInfoInputs.cache
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\DemoAPI.DataModel.AssemblyInfo.cs
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\DemoAPI.DataModel.csproj.CoreCompileInputs.cache
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\DemoAPI.DataModel.dll
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\refint\DemoAPI.DataModel.dll
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\DemoAPI.DataModel.pdb
+D:\Manikandan\MK\DemoProject\DemoAPI\DemoAPI.DataModel\obj\Debug\net6.0\ref\DemoAPI.DataModel.dll
