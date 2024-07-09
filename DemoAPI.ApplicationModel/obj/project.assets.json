@@ -948,11 +948,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj",
+      "projectUniqueName": "D:\\Manikandan\\MK\\git\\DempAPIs\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj",
       "projectName": "DemoAPI.ApplicationModel",
-      "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj",
+      "projectPath": "D:\\Manikandan\\MK\\git\\DempAPIs\\DemoAPI.ApplicationModel\\DemoAPI.ApplicationModel.csproj",
       "packagesPath": "C:\\Users\\IN0124\\.nuget\\packages\\",
-      "outputPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.ApplicationModel\\obj\\",
+      "outputPath": "D:\\Manikandan\\MK\\git\\DempAPIs\\DemoAPI.ApplicationModel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\IN0124\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -969,8 +969,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj": {
-              "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj"
+            "D:\\Manikandan\\MK\\git\\DempAPIs\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj": {
+              "projectPath": "D:\\Manikandan\\MK\\git\\DempAPIs\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj"
             }
           }
         }

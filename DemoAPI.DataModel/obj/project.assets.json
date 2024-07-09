@@ -659,11 +659,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj",
+      "projectUniqueName": "D:\\Manikandan\\MK\\git\\DempAPIs\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj",
       "projectName": "DemoAPI.DataModel",
-      "projectPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj",
+      "projectPath": "D:\\Manikandan\\MK\\git\\DempAPIs\\DemoAPI.DataModel\\DemoAPI.DataModel.csproj",
       "packagesPath": "C:\\Users\\IN0124\\.nuget\\packages\\",
-      "outputPath": "D:\\Manikandan\\MK\\DemoProject\\DemoAPI\\DemoAPI.DataModel\\obj\\",
+      "outputPath": "D:\\Manikandan\\MK\\git\\DempAPIs\\DemoAPI.DataModel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\IN0124\\AppData\\Roaming\\NuGet\\NuGet.Config",
