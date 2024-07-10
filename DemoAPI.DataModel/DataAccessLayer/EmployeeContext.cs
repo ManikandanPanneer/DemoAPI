@@ -10,11 +10,20 @@ namespace DemoAPI.DataModel.DataAccessLayer
     {
         private readonly string _connectionString;
 
+
+        /// <summary>
+        /// Getting the connection string form the appsetting.json and storing in _connectionString
+        /// </summary>      
         public EmployeeContext(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("LocalConnect");
         }
 
+
+        /// <summary>
+        /// DAL - used to Get the list of Employee
+        /// </summary>
+        /// <returns> Employee List</returns>
         public async Task<List<Employee>> GetAllEmployees()
         {
             var employees = new List<Employee>();
@@ -36,6 +45,12 @@ namespace DemoAPI.DataModel.DataAccessLayer
             return employees;
         }
 
+
+        /// <summary>
+        /// DAL - Used to Add new employee in DB
+        /// </summary>
+        /// <param name="employee"> Employee Details</param>
+        /// <returns> New Employee ID</returns>
         public async Task<int> AddEmployee(Employee employee)
         {
             int value = 0;
@@ -60,6 +75,12 @@ namespace DemoAPI.DataModel.DataAccessLayer
             return value;
         }
 
+
+        /// <summary>
+        /// DAL - To update Existing Employee
+        /// </summary>
+        /// <param name="employee">Employee Details</param>
+        /// <returns>Employee Details</returns>
         public async Task<int> UpdateEmployee(Employee employee)
         {
             int value = 0;
@@ -85,6 +106,11 @@ namespace DemoAPI.DataModel.DataAccessLayer
             return value;
         }
 
+        /// <summary>
+        /// DAL To delete Particular  Employee 
+        /// </summary>
+        /// <param name="id">Employee ID</param>
+        /// <returns>Employee Id</returns>
         public async Task<int> DeleteEmployee(int id)
         {
             int value = 0;

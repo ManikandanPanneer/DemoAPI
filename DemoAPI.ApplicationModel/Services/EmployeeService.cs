@@ -5,6 +5,10 @@ using DemoAPI.DataModel.Models;
 
 namespace DemoAPI.ApplicationModel.Services
 {
+    /// <summary>
+    /// Consist All the services of Employee Calling from Employee controller
+    /// Inherits from IEmployeeService
+    /// </summary>
     public class EmployeeService : IEmployeeService
     {
         private readonly EmployeeContext _employeeContext;

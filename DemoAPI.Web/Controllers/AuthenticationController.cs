@@ -23,7 +23,13 @@ namespace DemoAPI.Web.Controllers
             _response = new APIResponse();
             _Service = Service;
         }
-       
+
+
+        /// <summary>
+        /// To Register New User
+        /// </summary>
+        /// <param name="user"> User Details</param>
+        /// <returns> APIResponse.result = New user ID</returns>
         [HttpPost]
         [Route("Register")]
         public async Task<ActionResult<APIResponse>> Register(UserRegisterDto user)
@@ -56,6 +62,12 @@ namespace DemoAPI.Web.Controllers
             return _response;
         }
 
+
+        /// <summary>
+        /// To verify the Login Credentials
+        /// </summary>
+        /// <param name="login"> Login credentials (Email, Password)</param>
+        /// <returns> JWT Token </returns>
         [HttpPost]
         [Route("Login")]
         public async Task<ActionResult<APIResponse>> Login(LoginDto login)
@@ -74,7 +86,7 @@ namespace DemoAPI.Web.Controllers
                 _response.statusCode = System.Net.HttpStatusCode.OK;
                 _response.IsSuccess = true;
                 _response.Message = CommonMessage.SuccessAuth;
-                _response.result = await _Service.GenerateTocken(user);
+                _response.result = await _Service.GenerateToken(user);
 
             }
             catch (Exception e)

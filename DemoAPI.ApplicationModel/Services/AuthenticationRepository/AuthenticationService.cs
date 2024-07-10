@@ -10,6 +10,10 @@ using System.Text;
 
 namespace DemoAPI.ApplicationModel.Services.AuthenticationRepository
 {
+    /// <summary>
+    /// Consist All the services of Authentication Calling from Authentication controller
+    /// Inherits from IAuthenticationUser
+    /// </summary>
     public class AuthenticationService : IAuthenticationUser
     {
         private readonly AuthenticationContext _Context;
@@ -36,7 +40,7 @@ namespace DemoAPI.ApplicationModel.Services.AuthenticationRepository
             return user;
         }
 
-        public async Task<string> GenerateTocken(User user)
+        public async Task<string> GenerateToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:Key"]));
 

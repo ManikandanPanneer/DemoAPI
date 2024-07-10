@@ -1,13 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using DemoAPI.DataModel.AuthenticationModel;
+using Microsoft.Extensions.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DemoAPI.DataModel.AuthenticationModel;
-using Newtonsoft.Json.Linq;
+using System.Data.SqlClient;
 
 namespace DemoAPI.DataModel.DataAccessLayer
 {
@@ -15,11 +9,20 @@ namespace DemoAPI.DataModel.DataAccessLayer
     {
         private readonly string _connectionString;
 
+        /// <summary>
+        /// Getting the connection string form the appsetting.json and storing in _connectionString
+        /// </summary>      
         public AuthenticationContext(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("LocalConnect");
         }
 
+        /// <summary>
+        /// Validate the user with email and Password
+        /// </summary>
+        /// <param name="email"> User email - string</param>
+        /// <param name="password">Password - string </param>
+        /// <returns>User Details</returns>
         public async Task<User> ValidateUser(string email, string password)
         {
             User user = null;
@@ -49,6 +52,11 @@ namespace DemoAPI.DataModel.DataAccessLayer
             return user;
         }
 
+        /// <summary>
+        /// DAL - Register the new user
+        /// </summary>
+        /// <param name="user"> User details</param>
+        /// <returns>New user id</returns>
         public async Task<int> Register(User user)
         {
             int value = 0;
@@ -69,7 +77,6 @@ namespace DemoAPI.DataModel.DataAccessLayer
                     }
                 }
             }
-
             return value;
         }
 

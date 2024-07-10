@@ -29,6 +29,11 @@ namespace DemoAPI.Web.Controllers
             _Service = Service;
         }
 
+        /// <summary>
+        /// Used to Get The List of Employees
+        /// </summary>
+        /// <returns> APIResponse.result = Employee List</returns>
+
         [HttpGet]
         [Route("Employees")]
         public async Task<ActionResult<APIResponse>> GetAllEmployees()
@@ -57,6 +62,11 @@ namespace DemoAPI.Web.Controllers
             return _response;
         }
 
+        /// <summary>
+        /// Get the Particular Employee (Get the list of employees and filter from that)
+        /// </summary>
+        /// <param name="id"> Employee ID</param>
+        /// <returns>  APIResponse.result = Employee</returns>
         [HttpGet]
         [Route("Employee")]
         public async Task<ActionResult<APIResponse>> GetEmployeeById(int id)
@@ -85,7 +95,11 @@ namespace DemoAPI.Web.Controllers
             return _response;
         }
 
-
+        /// <summary>
+        /// To Delete the Particular employee
+        /// </summary>
+        /// <param name="id"> Employee ID</param>
+        /// <returns> APIResponse.result =  Employee ID</returns>
         [HttpDelete]
         [Route("delete")]
         public async Task<APIResponse> DeleteEmployee(int id)
@@ -120,7 +134,11 @@ namespace DemoAPI.Web.Controllers
             return _response;
         }
 
-
+        /// <summary>
+        /// To create a New employee
+        /// </summary>
+        /// <param name="employeeDto"> Employee DTO Consist Employee Details</param>
+        /// <returns> APIResponse.result = New Employee ID</returns>
         [HttpPost]
         [Route("create")]
         public async Task<APIResponse> AddEmployee([FromForm] CreateEmployeeDTO employeeDto)
@@ -144,6 +162,11 @@ namespace DemoAPI.Web.Controllers
             return _response;
         }
 
+        /// <summary>
+        /// To update a existing Employee
+        /// </summary>
+        /// <param name="employeeDto"> Update Employee Details consist Employee's updatation details</param>
+        /// <returns> APIResponse.result = Employee ID</returns>
         [HttpPost]
         [Route("update")]
         public async Task<APIResponse> UpdateEmployee([FromForm] UpdateEmployeeDto employeeDto)
@@ -177,121 +200,168 @@ namespace DemoAPI.Web.Controllers
 
 
 
-
+        /// <summary>
+        /// To get the Employee Details in a PDF format With Photo
+        /// </summary>
+        /// <param name="EmpId"> Employee ID</param>
+        /// <returns>PDF file</returns>
 
         [HttpGet]
         [Route("pdf")]
         public async Task<IActionResult> GetEmployeePdf(int EmpId)
         {
-            var employees = await _Service.GetAllEmployees();
-            var employee = employees.Where(e => e.Id == EmpId).FirstOrDefault();
-            if (employee == null)
+            try
             {
-                return NotFound();
-            }
-
-            var ms = new MemoryStream();
-
-            using (PdfWriter pdfWriter = new PdfWriter(ms))
-            {
-                // Create a PdfDocument with the PdfWriter
-                using (PdfDocument pdfDocument = new PdfDocument(pdfWriter))
+                var employees = await _Service.GetAllEmployees();
+                var employee = employees.Where(e => e.Id == EmpId).FirstOrDefault();
+                if (employee == null)
                 {
-                    // Create a Document to add content to
-                    iText.Layout.Document document = new iText.Layout.Document(pdfDocument);
+                    return NotFound();
+                }
 
-                    // Add content to the document
-                    document.SetMargins(30, 30, 30, 30);
-                    PdfFont timesbold = PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD);
-                    PdfFont times = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN);
-                    document.SetFont(times);
-                    float lineWidth = 1f;
+                var ms = new MemoryStream();
 
-
-                    if (employee.Image != null)
+                using (PdfWriter pdfWriter = new PdfWriter(ms))
+                {
+                    // Create a PdfDocument with the PdfWriter
+                    using (PdfDocument pdfDocument = new PdfDocument(pdfWriter))
                     {
-                        var imageData = iText.IO.Image.ImageDataFactory.Create(employee.Image);
-                        var image = new Image(imageData);
-                        document.Add(image);
+                        // Create a Document to add content to
+                        iText.Layout.Document document = new iText.Layout.Document(pdfDocument);
+
+                        // Add content to the document
+                        document.SetMargins(30, 30, 30, 30);
+                        PdfFont timesbold = PdfFontFactory.CreateFont(StandardFonts.TIMES_BOLD);
+                        PdfFont times = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN);
+                        document.SetFont(times);
+                        float lineWidth = 1f;
+
+
+                        if (employee.Image != null)
+                        {
+                            var imageData = iText.IO.Image.ImageDataFactory.Create(employee.Image);
+                            var image = new Image(imageData);
+                            document.Add(image);
+                        }
+
+                        Paragraph id = new Paragraph("ID    :" + employee.Id.ToString()).SetFontSize(16).SetFont(timesbold);
+                        document.Add(id);
+                        Paragraph Name = new Paragraph("Name  :" + employee.Name).SetFontSize(16).SetFont(timesbold);
+                        document.Add(Name);
+                        Paragraph mail = new Paragraph("Mail  :" + employee.Email).SetFontSize(16).SetFont(timesbold);
+                        document.Add(mail);
+                        Paragraph Phone = new Paragraph("Phone :" + employee.Phone).SetFontSize(16).SetFont(timesbold);
+                        document.Add(Phone);
                     }
-
-                    Paragraph id = new Paragraph("ID    :" + employee.Id.ToString()).SetFontSize(16).SetFont(timesbold);
-                    document.Add(id);
-                    Paragraph Name = new Paragraph("Name  :" + employee.Name).SetFontSize(16).SetFont(timesbold);
-                    document.Add(Name);
-                    Paragraph mail = new Paragraph("Mail  :" + employee.Email).SetFontSize(16).SetFont(timesbold);
-                    document.Add(mail);
-                    Paragraph Phone = new Paragraph("Phone :" + employee.Phone).SetFontSize(16).SetFont(timesbold);
-                    document.Add(Phone);
                 }
-            }
-            var fileName = $"Employee_{employee.Name}.pdf";
+                var fileName = $"Employee_{employee.Name}.pdf";
 
-            return File(ms.ToArray(), "application/pdf", fileName);
+                return File(ms.ToArray(), "application/pdf", fileName);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest("Error while getting PDF");
+            }
+            
 
         }
 
-
+        /// <summary>
+        /// To insert n-Number employee using CSV file
+        /// </summary>
+        /// <param name="file">CSV file with employee data</param>
+        /// <returns> APIResponse.result = Null , APIResponse.IsSuccess = true / false </returns>
         [HttpPost("InsertEmployeeCsv")]
-        public async Task<IActionResult> UploadCsv(IFormFile file)
+        public async Task<ActionResult<APIResponse>> UploadCsv(IFormFile file)
         {
-            if (file == null || file.Length == 0)
+            try
             {
-                return BadRequest("No file uploaded.");
-            }
-
-            var employees = new List<CreateEmployeeDTO>();
-
-            using (var stream = new StreamReader(file.OpenReadStream(), Encoding.UTF8))
-            using (var csv = new CsvReader(stream, new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = "," }))
-            {
-                var records = csv.GetRecords<EmployeeCSV>();
-                foreach (var record in records)
+                if (file == null || file.Length == 0)
                 {
-                    employees.Add(new CreateEmployeeDTO
-                    {
-                        Name = record.Name,
-                        Email = record.Email,
-                        Phone = record.Phone
-                    });
+                    _response.statusCode = System.Net.HttpStatusCode.BadRequest;
+                    _response.Message = CommonMessage.FailedCreated;
+                    return _response;
                 }
-            }
 
-            foreach (var employee in employees)
+                var employees = new List<CreateEmployeeDTO>();
+
+                using (var stream = new StreamReader(file.OpenReadStream(), Encoding.UTF8))
+                using (var csv = new CsvReader(stream, new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = "," }))
+                {
+                    var records = csv.GetRecords<EmployeeCSV>();
+                    foreach (var record in records)
+                    {
+                        employees.Add(new CreateEmployeeDTO
+                        {
+                            Name = record.Name,
+                            Email = record.Email,
+                            Phone = record.Phone
+                        });
+                    }
+                }
+
+                foreach (var employee in employees)
+                {
+                    var id = await _Service.AddEmployee(employee);
+                }
+
+                _response.statusCode = System.Net.HttpStatusCode.OK;
+                _response.IsSuccess = true;
+                _response.Message = CommonMessage.SuccessCreated;               
+
+            }
+            catch (Exception e)
             {
-              var id = await _Service.AddEmployee(employee);
+                _response.statusCode = System.Net.HttpStatusCode.InternalServerError;
+                _response.IsSuccess = false;
+                _response.Message = CommonMessage.FailedUpdate;
+                _response.ErrorMessage = e.Message;
             }
+            return _response;
+           
 
-            return Ok("Employees inserted successfully.");
+            
         }
 
-
+        /// <summary>
+        /// To Download all the employee data in CSV format
+        /// </summary>
+        /// <returns> Employee Data CSV </returns>
         [HttpGet("EmployeeDataCsv")]
         public async Task<IActionResult> DownloadCsv()
         {
-            var employees = await _Service.GetAllEmployees();
-            var employeeCsv = new List<EmployeeCSV>();
-
-            foreach (var employee in employees)
+            try
             {
-                employeeCsv.Add(new EmployeeCSV
-                {                   
-                    Name = employee.Name,
-                    Email = employee.Email,
-                    Phone = employee.Phone
-                });
-            }
+                var employees = await _Service.GetAllEmployees();
+                var employeeCsv = new List<EmployeeCSV>();
 
-            using (var memoryStream = new MemoryStream())
-            using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8))
-            using (var csvWriter = new CsvWriter(streamWriter, new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = "," }))
-            {
-                csvWriter.WriteRecords(employeeCsv);
-                streamWriter.Flush();
-                memoryStream.Position = 0;
-                var fileName = "EmployeeList.csv";
-                return File(memoryStream.ToArray(), "text/csv", fileName);
+                foreach (var employee in employees)
+                {
+                    employeeCsv.Add(new EmployeeCSV
+                    {
+                        Name = employee.Name,
+                        Email = employee.Email,
+                        Phone = employee.Phone
+                    });
+                }
+
+                using (var memoryStream = new MemoryStream())
+                using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8))
+                using (var csvWriter = new CsvWriter(streamWriter, new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = "," }))
+                {
+                    csvWriter.WriteRecords(employeeCsv);
+                    streamWriter.Flush();
+                    memoryStream.Position = 0;
+                    var fileName = "EmployeeList.csv";
+                    return File(memoryStream.ToArray(), "text/csv", fileName);
+                }
             }
+            catch (Exception)
+            {
+
+                return BadRequest("Error while dowloading CSV");
+            }           
         }
     }
 }

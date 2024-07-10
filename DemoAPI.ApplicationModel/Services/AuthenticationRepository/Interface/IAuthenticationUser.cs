@@ -7,6 +7,6 @@ namespace DemoAPI.ApplicationModel.Services.AuthenticationRepository.Interface
     {
         Task<int> RegisterUser(UserRegisterDto user);
         Task<User> ValidateUser(LoginDto login);
-        Task<string> GenerateTocken(User user);
+        Task<string> GenerateToken(User user);
     }
 }
