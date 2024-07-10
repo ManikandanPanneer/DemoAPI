@@ -1,33 +1,40 @@
---DB Creation
-create database EmployeeAPI
-
---Create Employee Table
-CREATE TABLE Employees (
+--Create Table
+Create TABLE Employees (
     Id INT PRIMARY KEY IDENTITY(1,1),
     Name NVARCHAR(100),
-    Email NVARCHAR(100),
-    Phone NVARCHAR(15),
-    Image VARBINARY(MAX)
+	DOB date null,
+	Age int null,
+    Designation NVARCHAR(100) null,
+    Email NVARCHAR(100) null,
+    Phone NVARCHAR(15) null,
+	Gender NVARCHAR(15) null,
+	IsActive bit Not NULL,
+    Image VARBINARY(MAX) NULL
 );
 
 
---Create Employee SP
-create PROCEDURE sp_AddEmployee
+--Create Employee
+Create PROCEDURE sp_AddEmployee
     @Name NVARCHAR(100),
-    @Email NVARCHAR(100),
-    @Phone NVARCHAR(15),
+	@DOB date = NULL,	
+	@Age int  = NULL,
+    @Designation NVARCHAR(100)  = NULL,
+    @Email NVARCHAR(100)  = NULL,
+	@Gender NVARCHAR(15)  = NULL,
+    @Phone NVARCHAR(15)  = NULL,
+	@IsActive bit,
     @Image VARBINARY(MAX) = NULL
 AS
 BEGIN
 	if(@Image is NULL)
 	begin
-	INSERT INTO Employees (Name, Email, Phone)
-    VALUES (@Name, @Email, @Phone);
+	INSERT INTO Employees (Name,DOB,Age,Designation, Email, Phone,Gender,IsActive)
+    VALUES (@Name,@DOB,@Age,@Designation, @Email, @Phone,@Gender,@IsActive);
 	end
 	else
 	begin
-	INSERT INTO Employees (Name, Email, Phone, Image)
-    VALUES (@Name, @Email, @Phone, @Image);
+	INSERT INTO Employees (Name,DOB,Age,Designation, Email, Phone,Gender,IsActive, Image)
+    VALUES (@Name,@DOB,@Age,@Designation, @Email, @Phone,@Gender,@IsActive, @Image);
 	end    
 
 	select SCOPE_IDENTITY() as ID
@@ -35,45 +42,60 @@ END
 
 
 
---Get all Employee SP
-create PROCEDURE sp_GetAllEmployees
+--Get all
+Create PROCEDURE sp_GetAllEmployees
 AS
 BEGIN
-    SELECT Id,Name,Email,Phone,Image FROM Employees;
+    SELECT Id,Name,DOB,Age,Designation,Email,Phone,Gender,IsActive,Image FROM Employees where IsActive = 1;
 END
 
 --Get by ID
-create PROCEDURE sp_GetEmployeeById
+Create PROCEDURE sp_GetEmployeeById
     @Id INT
 AS
 BEGIN
-    SELECT Id,Name,Email,Phone,Image FROM Employees WHERE Id = @Id;
+   SELECT Id,Name,DOB,Age,Designation,Email,Phone,Gender,IsActive,Image FROM Employees WHERE Id = @Id and IsActive =1;
 END
 
 
---Update Employee SP
-create PROCEDURE sp_UpdateEmployee
+--Update
+Create PROCEDURE sp_UpdateEmployee
     @Id INT,
-    @Name NVARCHAR(100),
-    @Email NVARCHAR(100),
-    @Phone NVARCHAR(15),
-    @Image VARBINARY(MAX)
+   @Name NVARCHAR(100),
+	@DOB date = NULL,	
+	@Age int  = NULL,
+    @Designation NVARCHAR(100)  = NULL,
+    @Email NVARCHAR(100)  = NULL,
+	@Gender NVARCHAR(15)  = NULL,
+    @Phone NVARCHAR(15)  = NULL,
+	@IsActive bit,
+    @Image VARBINARY(MAX) = NULL
 AS
 BEGIN
 	if(@Image is NULL)
 	begin
 		  UPDATE Employees
 			SET Name = @Name,
+			DOB = @DOB,
+			Age=@Age,
+			Designation=@Designation,
 			Email = @Email,
-			Phone = @Phone			
+			Gender=@Gender,
+			Phone = @Phone,
+			IsActive = @IsActive
 			WHERE Id = @Id;
 	end
 	else
 	begin
 		  UPDATE Employees
 			SET Name = @Name,
+			DOB = @DOB,
+			Age=@Age,
+			Designation=@Designation,
 			Email = @Email,
+			Gender=@Gender,
 			Phone = @Phone,
+			IsActive = @IsActive,
 			Image = @Image
 			WHERE Id = @Id;
 	end
@@ -83,26 +105,25 @@ BEGIN
 END
 
 
---Delete Employee SP
-create PROCEDURE sp_DeleteEmployee
+--Delete
+Create PROCEDURE sp_DeleteEmployee
     @Id INT
 AS
 BEGIN
-    DELETE FROM Employees WHERE Id = @Id;
+    UPDATE Employees
+			SET IsActive = 0 WHERE Id = @Id;
 	select @Id as ID
 END
 
-
-
 -------Authentication
-CREATE TABLE Users (
+Create TABLE Users (
     UserId INT PRIMARY KEY IDENTITY(1,1),
     Email NVARCHAR(100) UNIQUE NOT NULL,
     Password NVARCHAR(255) NOT NULL,
     AccessId NVARCHAR(50) NOT NULL
 );
 
-create PROCEDURE sp_ValidateUser
+Create PROCEDURE sp_ValidateUser
     @Email NVARCHAR(100),
     @Password NVARCHAR(255)
 AS
@@ -114,7 +135,7 @@ END
 
 
 
-create PROCEDURE sp_RegisterUser
+Create PROCEDURE sp_RegisterUser
     @Email NVARCHAR(100),
 	  @Password NVARCHAR(255),
 	    @AccessId NVARCHAR(50)  
@@ -131,4 +152,3 @@ BEGIN
 		select SCOPE_IDENTITY() as ID
 	end
 END
-

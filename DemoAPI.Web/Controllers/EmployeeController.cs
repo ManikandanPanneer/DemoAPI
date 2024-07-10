@@ -10,14 +10,12 @@ using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Globalization;
-using System.Reflection;
 using System.Text;
 
 namespace DemoAPI.Web.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class EmployeeController : ControllerBase
