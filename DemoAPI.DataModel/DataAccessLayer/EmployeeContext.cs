@@ -60,8 +60,21 @@ namespace DemoAPI.DataModel.DataAccessLayer
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Name", employee.Name);
+                    cmd.Parameters.AddWithValue("@DOB", employee.DOB.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@Age", employee.Age);
+                    cmd.Parameters.AddWithValue("@Designation", employee.Designation);
                     cmd.Parameters.AddWithValue("@Email", employee.Email);
+                    cmd.Parameters.AddWithValue("@Gender", employee.Gender);
                     cmd.Parameters.AddWithValue("@Phone", employee.Phone);
+                    if(employee.IsActive)
+                    {
+                        cmd.Parameters.AddWithValue("@IsActive",1);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@IsActive", 0);
+                    }
+                    
                     cmd.Parameters.AddWithValue("@Image", employee.Image);
                     conn.Open();
                     var Id = await cmd.ExecuteScalarAsync();
@@ -91,9 +104,22 @@ namespace DemoAPI.DataModel.DataAccessLayer
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id", employee.Id);
                     cmd.Parameters.AddWithValue("@Name", employee.Name);
+                    cmd.Parameters.AddWithValue("@DOB", employee.DOB.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@Age", employee.Age);
+                    cmd.Parameters.AddWithValue("@Designation", employee.Designation);
                     cmd.Parameters.AddWithValue("@Email", employee.Email);
+                    cmd.Parameters.AddWithValue("@Gender", employee.Gender);
                     cmd.Parameters.AddWithValue("@Phone", employee.Phone);
-                    cmd.Parameters.AddWithValue("@Image", employee.Image ?? (object)DBNull.Value);
+                    if (employee.IsActive)
+                    {
+                        cmd.Parameters.AddWithValue("@IsActive", 1);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@IsActive", 0);
+                    }
+
+                    cmd.Parameters.AddWithValue("@Image", employee.Image);
                     conn.Open();
                     var Id = await cmd.ExecuteScalarAsync(); 
                     conn.Close();

@@ -22,8 +22,13 @@ namespace DemoAPI.ApplicationModel.Services
             var employee = new Employee
             {
                 Name = employeeDto.Name,
+                DOB= employeeDto.DOB,
+                Age= employeeDto.Age,
+                Designation= employeeDto.Designation,
                 Email = employeeDto.Email,
-                Phone = employeeDto.Phone
+                Phone = employeeDto.Phone,
+                Gender= employeeDto.Gender,
+                IsActive= employeeDto.IsActive
             };
 
             if (employeeDto.Image != null)
@@ -46,8 +51,13 @@ namespace DemoAPI.ApplicationModel.Services
             {
                 Id = employeeDto.Id,
                 Name = employeeDto.Name,
+                DOB = employeeDto.DOB,
+                Age = employeeDto.Age,
+                Designation = employeeDto.Designation,
                 Email = employeeDto.Email,
-                Phone = employeeDto.Phone
+                Phone = employeeDto.Phone,
+                Gender = employeeDto.Gender,
+                IsActive = employeeDto.IsActive
             };
 
             if (employeeDto.Image != null)

@@ -10,12 +10,14 @@ using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Globalization;
+using System.Reflection;
 using System.Text;
 
 namespace DemoAPI.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api")]
     [ApiController]
     public class EmployeeController : ControllerBase
@@ -248,10 +250,23 @@ namespace DemoAPI.Web.Controllers
                         document.Add(id);
                         Paragraph Name = new Paragraph("Name  :" + employee.Name).SetFontSize(16).SetFont(timesbold);
                         document.Add(Name);
-                        Paragraph mail = new Paragraph("Mail  :" + employee.Email).SetFontSize(16).SetFont(timesbold);
-                        document.Add(mail);
+                        Paragraph dob = new Paragraph("DOB  :" + employee.DOB.ToString()).SetFontSize(16).SetFont(timesbold);
+                        document.Add(dob);
+                        Paragraph age = new Paragraph("Age :" + employee.Age.ToString()).SetFontSize(16).SetFont(timesbold);
+                        document.Add(age);
+                        Paragraph Designation = new Paragraph("Designation :" + employee.Designation).SetFontSize(16).SetFont(timesbold);
+                        document.Add(Designation);
+
+                        Paragraph Email = new Paragraph("Email :" + employee.Email).SetFontSize(16).SetFont(timesbold);
+                        document.Add(Email);
+
                         Paragraph Phone = new Paragraph("Phone :" + employee.Phone).SetFontSize(16).SetFont(timesbold);
                         document.Add(Phone);
+                        Paragraph Gender = new Paragraph("Gender :" + employee.Gender).SetFontSize(16).SetFont(timesbold);
+                        document.Add(Gender);
+                        
+
+
                     }
                 }
                 var fileName = $"Employee_{employee.Name}.pdf";
@@ -295,8 +310,13 @@ namespace DemoAPI.Web.Controllers
                         employees.Add(new CreateEmployeeDTO
                         {
                             Name = record.Name,
+                            DOB = record.DOB,
+                            Age = record.Age,
+                            Designation= record.Designation,
                             Email = record.Email,
-                            Phone = record.Phone
+                            Phone = record.Phone,
+                            Gender = record.Gender,
+                            IsActive = record.IsActive
                         });
                     }
                 }
@@ -341,8 +361,13 @@ namespace DemoAPI.Web.Controllers
                     employeeCsv.Add(new EmployeeCSV
                     {
                         Name = employee.Name,
+                        DOB = employee.DOB,
+                        Age = employee.Age,
+                        Designation= employee.Designation,
                         Email = employee.Email,
-                        Phone = employee.Phone
+                        Gender = employee.Gender,
+                        Phone = employee.Phone,
+                        IsActive = employee.IsActive
                     });
                 }
 
