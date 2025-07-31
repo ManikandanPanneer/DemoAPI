@@ -1,4 +1,5 @@
 Changed
+//changes from MK
 --Create Table
 Create TABLE Employees (
     Id INT PRIMARY KEY IDENTITY(1,1),
